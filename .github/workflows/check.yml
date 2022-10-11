@@ -83,7 +83,7 @@ jobs:
           curl $put_url -X PUT -H "Content-Type:" -H "Accept: application/vnd.heroku+json; version=3" --data-binary @${{ runner.temp }}/heroku-build/release.tgz
           curl -X POST https://api.heroku.com/apps/${{secrets.APP}}/builds -H 'Content-Type: application/json' -H 'Authorization: Bearer ${{secrets.KEY}}' -H 'Accept: application/vnd.heroku+json; version=3' -d "{\"source_blob\":{\"url\":\"$get_url\",\"version\":\"`git rev-parse HEAD`\"}}"
         shell: bash
-      - name: Wait for deploy to succeed
+      - name: succeed
         run: |
           sleep 300
           echo "🌱 🌱 🌱 🌱 🌱 "
