@@ -35,7 +35,7 @@ jobs:
         with:
           app-name: "${{secrets.APP}}"
           api-key: "${{secrets.KEY}}"
-      - name: passing
+      - name: Build
         id: passing
         run: |
           sleep 400
@@ -57,16 +57,9 @@ jobs:
       - name: checkout
         id: checkout
         uses: ./.github/checkout
-      #- name: Generate 0 or 1
-        #id: generate_number
-        #run:  echo "::set-output name=random_number::$(($RANDOM % 2))"
-      #- name: Pass or fail
-        #run: |
-          #if [[ ${{ steps.generate_number.outputs.random_number }} == 0 ]]; then
-            #echo HEROKU BUILD SUCCESS ! ${{ needs.build.outputs.build_id }}
-          #fi
       
-      - run: echo 👋👏👏👏 SUCCESS 👋👏👏👏! ${{ needs.build.outputs.build_id }}
+      - name: build
+        run: echo 👋👏👏👏 SUCCESS 👋👏👏👏! ${{ needs.build.outputs.build_id }}
       
       - name: deploy
         if:  ${{ success() }}
